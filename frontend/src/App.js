@@ -2,7 +2,7 @@ import { Container } from "react-bootstrap";
 import Header from "./components/com/Header";
 import "./css/App.css";
 import Footer from "./components/com/Footer";
-import { Home } from "./components/screens/Home";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
@@ -10,8 +10,9 @@ function App() {
       <Header />
       <main className="py-3">
         <Container>
-          <h1>ecom 2023</h1>
-          <Home />
+          <h1>proShop 2023</h1>
+          <Outlet />
+          {/*print the router outlet instead of homeScreen*/}
         </Container>
       </main>
       <Footer />
