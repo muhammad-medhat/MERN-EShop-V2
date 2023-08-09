@@ -11,11 +11,13 @@ import "./assets/styles/bootstrap.custom.css";
 import "./assets/styles/index.css";
 import App from "./App";
 import { HomeScreen } from "./components/screens/HomeScreen";
+import { ProductScreen } from "./components/screens/ProductScreen";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="/" index element={<HomeScreen />} />
+      <Route path="/products/:id" index element={<ProductScreen />} />
     </Route>
   )
 );
