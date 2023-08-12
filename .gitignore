@@ -132,5 +132,5 @@ dist
 
 # temp ignore
 products-and-images.zip
-# setupProxy.js
+setupProxy.js
 README.md
