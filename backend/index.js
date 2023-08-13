@@ -3,8 +3,8 @@ import dotenv from "dotenv";
 import colors from "colors";
 import connectDb from "./config/db.js";
 import cors from "cors";
-import products from "./data/products.js";
 import productRoutes from "./routes/productRoutes.js";
+import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 dotenv.config();
 connectDb();
 const PORT = process.env.PORT || 5000;
@@ -22,6 +22,8 @@ app.get("/", (req, res) => {
 });
 app.use("/api/products", productRoutes);
 /****** End Routes Section *************** */
+app.use(notFound);
+app.use(errorHandler);
 app.listen(PORT, () => {
   console.log(`App Running on port ${PORT} in ${NODE_ENV}  mode`.yellow);
 });
