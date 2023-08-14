@@ -3,9 +3,6 @@ import React, { useEffect, useState } from "react";
 import { ProductCard } from "../com/productCard";
 import { Col, Row } from "react-bootstrap";
 import axios from "axios";
-import { useGetProductsQuery } from "../../slices/productsApiSlice";
-import Loader from "../com/Loader";
-import Message from "../com/Message";
 
 export const HomeScreen = () => {
   const { data: products, isLoading, error: err } = useGetProductsQuery();
@@ -13,7 +10,6 @@ export const HomeScreen = () => {
   return (
     <div>
       <h2>latest products</h2>
-      {/* {JSON.stringify({ products }, null, 3)} */}
       <Row>
         {isLoading ? (
           <h2>

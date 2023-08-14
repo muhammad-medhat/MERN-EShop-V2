@@ -5,8 +5,11 @@ import { Button, Col, Image, ListGroup, Row } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import Rating from "../com/Rating";
 import { useGetProductDetailsQuery } from "../../slices/productsApiSlice";
+<<<<<<< HEAD
 import Loader from "../com/Loader";
 import Message from "../com/Message";
+=======
+>>>>>>> 7f4c919cfe14a1f9995eefca2cca3e256198e307
 
 export const ProductScreen = () => {
   const { id: pId } = useParams();
@@ -23,11 +26,23 @@ export const ProductScreen = () => {
         Go Back
       </Link>
       {isLoading ? (
+<<<<<<< HEAD
         <h2>
           <Loader />
         </h2>
       ) : err ? (
         <Message variant="danger">{err.data?.message || err.error}</Message>
+=======
+        <h2>Loading...</h2>
+      ) : err ? (
+        <h2 className="text-danger">
+          {
+            //JSON.stringify(err, null, 3)
+            //JSON.stringify(Object.entries(err), null, 3)
+            err.error
+          }
+        </h2>
+>>>>>>> 7f4c919cfe14a1f9995eefca2cca3e256198e307
       ) : (
         <>
           <h2>{product.name}</h2>
