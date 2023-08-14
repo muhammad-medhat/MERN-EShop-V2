@@ -3,34 +3,32 @@ import React, { useEffect, useState } from "react";
 import { ProductCard } from "../com/productCard";
 import { Col, Row } from "react-bootstrap";
 import axios from "axios";
+import { useGetProductsQuery } from "../../slices/productsApiSlice";
+import Loader from "../com/Loader";
+import Message from "../com/Message";
 
 export const HomeScreen = () => {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    // fetch("/api/products")
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     debugger;
-    //     setProducts(data);
-    //   })
-    //   .catch((error) => console.log(error));
-    const fetchProducts = async () => {
-      const { data } = await axios.get("/api/products");
-      setProducts(data);
-    };
-    fetchProducts();
-  }, []);
+  const { data: products, isLoading, error: err } = useGetProductsQuery();
+  debugger;
   return (
     <div>
       <h2>latest products</h2>
-      {JSON.stringify({ products }, null, 3)}
+      {/* {JSON.stringify({ products }, null, 3)} */}
       <Row>
-        {products &&
+        {isLoading ? (
+          <h2>
+            <Loader />
+          </h2>
+        ) : err ? (
+          <Message variant="danger">{err.data?.message || err.error}</Message>
+        ) : (
+          products &&
           products.map((p) => (
-            <Col xs={12} md={6} lg={4} xl={3}>
-              <ProductCard product={p} key={p._id} />
+            <Col xs={12} md={6} lg={4} xl={3} key={p._id}>
+              <ProductCard product={p} />
             </Col>
-          ))}
+          ))
+        )}
       </Row>
     </div>
   );

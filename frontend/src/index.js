@@ -1,3 +1,4 @@
+// import "./setupProxy.js";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import {
@@ -12,6 +13,8 @@ import "./assets/styles/index.css";
 import App from "./App";
 import { HomeScreen } from "./components/screens/HomeScreen";
 import { ProductScreen } from "./components/screens/ProductScreen";
+import { Provider } from "react-redux";
+import store from "./store.js";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +28,8 @@ const router = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
