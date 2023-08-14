@@ -12,10 +12,10 @@ const NODE_ENV = process.env.NODE_ENV;
 const app = express();
 
 const corsOptions = {
-  origin: "http://127.0.0.1:3000/",
+  origin: "http://localhost:3000/",
 };
 
-app.use(cors(corsOptions));
+app.use(cors());
 /** Routes */
 app.get("/", (req, res) => {
   res.send(`API is Running om port ${PORT}...`);

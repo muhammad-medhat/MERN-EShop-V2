@@ -133,5 +133,7 @@ dist
 
 # temp ignore
 products-and-images.zip
+package-copy.json
 setupProxy.js
+1setupProxy.js
 README.md
