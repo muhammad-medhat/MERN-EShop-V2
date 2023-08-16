@@ -13,6 +13,7 @@ import "./assets/styles/index.css";
 import App from "./App";
 import { HomeScreen } from "./components/screens/HomeScreen";
 import { ProductScreen } from "./components/screens/ProductScreen";
+import { CartScreen } from "./components/screens/CartScreen";
 import { Provider } from "react-redux";
 import store from "./store.js";
 
@@ -20,7 +21,8 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="/" index element={<HomeScreen />} />
-      <Route path="/products/:id" index element={<ProductScreen />} />
+      <Route path="/products/:id" element={<ProductScreen />} />
+      <Route path="/cart" element={<CartScreen />} />
     </Route>
   )
 );
