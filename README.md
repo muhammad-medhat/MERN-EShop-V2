@@ -77,7 +77,7 @@ In the seeding process, there are two main steps: deleting existing data and cre
 
 - development server means to run both servers, execute from the root directory
 `npm run dev`
-### Deoloyment
+### Deployment
 Congratulations! The application has been successfully deployed and is now accessible through the following link: https://mern-eshop-v2.onrender.com/
 
 Access Instructions
