@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import colors from "colors";
 import connectDb from "./config/db.js";
 import cors from "cors";
+import path from "path";
 import productRoutes from "./routes/productRoutes.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 dotenv.config();
@@ -17,11 +18,27 @@ const corsOptions = {
 
 app.use(cors());
 /** Routes */
-app.get("/", (req, res) => {
-  res.send(`API is Running om port ${PORT}...`);
-});
+
 app.use("/api/products", productRoutes);
 /****** End Routes Section *************** */
+
+/** Deployment */
+if (process.env.NODE_ENV === "production") {
+  const __dirname = path.resolve();
+  app.use("/uploads", express.static("/var/data/uploads"));
+  app.use(express.static(path.join(__dirname, "/frontend/build")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
+  );
+} else {
+  const __dirname = path.resolve();
+  app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+  app.get("/", (req, res) => {
+    res.send("API is running....");
+  });
+}
+/** End Deployment */
 app.use(notFound);
 app.use(errorHandler);
 app.listen(PORT, () => {
