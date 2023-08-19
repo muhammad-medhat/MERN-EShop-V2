@@ -5,7 +5,9 @@ import connectDb from "./config/db.js";
 import cors from "cors";
 import path from "path";
 import productRoutes from "./routes/productRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
+import cookieParser from "cookie-parser";
 dotenv.config();
 connectDb();
 const PORT = process.env.PORT || 5000;
@@ -17,9 +19,16 @@ const corsOptions = {
 };
 
 app.use(cors());
+/************ to get the body data ****** */
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+/*************************************** */
+/** cookie-parser middleware */
+app.use(cookieParser());
 /** Routes */
 
 app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes);
 /****** End Routes Section *************** */
 
 /** Deployment */
