@@ -16,7 +16,9 @@ import { addToCart, removeFromCart } from "../../slices/cartSlice";
 export const CartScreen = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const checkoutHandler = () => {};
+  const checkoutHandler = () => {
+    navigate("/login?redirect=/shipping");
+  };
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
   };
