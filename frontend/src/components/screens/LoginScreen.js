@@ -32,7 +32,7 @@ const LoginScreen = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    debugger;
+    // debugger;
     try {
       const res = await login({ email, password }).unwrap();
       dispatch(setCredentials({ ...res }));

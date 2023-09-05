@@ -8,7 +8,6 @@ import Product from "../models/productModel.js";
 // @route   POST /api/orders
 // @access  Private
 const addOrderItems = asyncHandler(async (req, res) => {
-  // res.send("addOrderItems");
   const {
     orderItems,
     shippingAddress,
@@ -18,15 +17,35 @@ const addOrderItems = asyncHandler(async (req, res) => {
     shippingPrice,
     totalPrice,
   } = req.body;
+  console.log({ user: req.user });
   if (orderItems && orderItems.length === 0) {
     res.status(400);
     throw new Error("No order items");
   } else {
+    console.log("creating new order...");
+    // console.log({ orderItems });
+    console.log({
+      dt: {
+        orderItems: orderItems.map((x) => ({
+          ...x,
+          // _id: undefined,
+          product: x._id,
+        })),
+        user: req.user._id,
+        shippingAddress,
+        paymentMethod,
+        itemsPrice,
+        taxPrice,
+        shippingPrice,
+        totalPrice,
+      },
+    });
+
     const order = new Order({
       orderItems: orderItems.map((x) => ({
         ...x,
-        product: x._id,
         _id: undefined,
+        product: x._id,
       })),
       user: req.user._id,
       shippingAddress,
@@ -36,6 +55,8 @@ const addOrderItems = asyncHandler(async (req, res) => {
       shippingPrice,
       totalPrice,
     });
+    console.log("order obj created");
+    console.log({ mmm: order });
 
     const createdOrder = await order.save();
 

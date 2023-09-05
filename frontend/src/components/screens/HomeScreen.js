@@ -9,7 +9,7 @@ import Message from "../com/Message";
 
 export const HomeScreen = () => {
   const { data: products, isLoading, error: err } = useGetProductsQuery();
-  debugger;
+  // debugger;
   return (
     <div>
       <h2>latest products</h2>

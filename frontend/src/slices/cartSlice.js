@@ -11,7 +11,9 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       debugger;
-      const item = action.payload;
+      const { _id, name, image, price, qty } = action.payload;
+      const item = { _id, name, image, price, qty };
+      // const item = action.payload;
       const existItem = state.cartItems.find((x) => x._id === item._id);
       if (existItem) {
         state.cartItems = state.cartItems.map((x) =>
@@ -35,6 +37,10 @@ const cartSlice = createSlice({
       state.paymentMethod = action.payload;
       return updateCart(state);
     },
+    clearCartItems: (state, action) => {
+      state.cartItems = [];
+      return updateCart(state);
+    },
   },
 });
 
@@ -43,7 +49,7 @@ export const {
   removeFromCart,
   saveShippingAddress,
   savePaymentMethod,
-  // clearCartItems,
+  clearCartItems,
   // resetCart,
 } = cartSlice.actions;
 
