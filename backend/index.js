@@ -19,7 +19,7 @@ const corsOptions = {
   origin: "http://localhost:3000/",
 };
 
-app.use(cors());
+// app.use(cors(corsOptions));
 /************ to get the body data ****** */
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
