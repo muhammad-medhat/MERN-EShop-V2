@@ -13,6 +13,7 @@ dotenv.config();
 connectDb();
 const PORT = process.env.PORT || 5000;
 const NODE_ENV = process.env.NODE_ENV;
+const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID;
 const app = express();
 
 const corsOptions = {
@@ -31,6 +32,10 @@ app.use(cookieParser());
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
+
+app.get("/api/config/paypal", (req, res) =>
+  res.send({ clientId: PAYPAL_CLIENT_ID })
+);
 /****** End Routes Section *************** */
 
 /** Deployment */
